@@ -48,7 +48,8 @@ app.use(passport.session());
 // static files
 app.use(express.static(path.join(__dirname, '../build')));
 
-// api routes
+// auth & api routes
+app.use('/auth', require('./auth'));
 app.use('/api', require('./apiRoutes'));
 
 // all other requests
