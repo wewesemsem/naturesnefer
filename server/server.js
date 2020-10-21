@@ -5,6 +5,18 @@ const session = require('express-session');
 const db = require('./db');
 const passport = require('passport');
 
+// passport registration
+passport.serializeUser((user, done) => done(null, user.id));
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
 // logging
 app.use(require('morgan')('dev'));
 
