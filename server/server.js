@@ -1,21 +1,45 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const session = require('express-session');
+const db = require('./db');
+const passport = require('passport');
 
-//logging
+// logging
 app.use(require('morgan')('dev'));
 
-//body parsing
+// body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//static files
+// compression
+app.use(require('compression')());
+
+// database store
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const dbStore = new SequelizeStore({ db: db });
+dbStore.sync();
+
+// session
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    store: dbStore,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// static files
 app.use(express.static(path.join(__dirname, '../build')));
 
-///api routes
+// api routes
 app.use('/api', require('./apiRoutes'));
 
-//all other requests
+// all other requests
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'));
 });
