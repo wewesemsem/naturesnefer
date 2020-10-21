@@ -3,6 +3,10 @@ const router = require('express').Router();
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const { User } = require('../db/models');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   console.log('Google client ID / secret not found. Skipping Google OAuth.');
 } else {

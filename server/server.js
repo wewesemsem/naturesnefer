@@ -5,6 +5,10 @@ const session = require('express-session');
 const db = require('./db');
 const passport = require('passport');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id));
 
