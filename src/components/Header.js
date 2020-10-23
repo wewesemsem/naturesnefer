@@ -1,6 +1,7 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
-import logo from '../assets/logo.svg';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import logo1 from '../assets/logo1.png';
+import logo2 from '../assets/logo2.png';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
@@ -29,61 +30,16 @@ class Header extends React.Component {
         fixed="top"
       >
         <Link
-          to="/home"
+          to="/"
           onClick={() => {
             this.collapseNav();
           }}
         >
-          <Navbar.Brand href="/home">
-            <img
-              alt=""
-              src={logo}
-              width="60"
-              height="60"
-              className="App-logo"
-            />{' '}
+          <Navbar.Brand href="/">
+            <img alt="" src={logo2} className="App-logo" />
+            <img alt="" src={logo1} className="App-logo" />
           </Navbar.Brand>
         </Link>
-        <Navbar.Toggle
-          onClick={() => this.toggleNav()}
-          aria-controls="responsive-navbar-nav"
-        />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Link
-              to="/aboutMe"
-              onClick={() => {
-                this.collapseNav();
-              }}
-            >
-              <Navbar.Text href="/aboutMe" class="nav-link">
-                About Me
-              </Navbar.Text>
-            </Link>
-            <Link
-              to="/portfolio"
-              onClick={() => {
-                this.collapseNav();
-              }}
-            >
-              <Navbar.Text href="/portfolio" class="nav-link">
-                Portfolio
-              </Navbar.Text>
-            </Link>
-          </Nav>
-          <Nav>
-            <Link
-              to="/contact"
-              onClick={() => {
-                this.collapseNav();
-              }}
-            >
-              <Navbar.Text href="/contact" class="nav-link">
-                Contact
-              </Navbar.Text>
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
       </Navbar>
     );
   }

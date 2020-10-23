@@ -7,13 +7,13 @@ import './App.css';
 
 function App() {
   return (
-    <Container fluid>
+    <div>
       <Header />
       <Container fluid className="App-body">
         <Routes />
       </Container>
       <Footer />
-    </Container>
+    </div>
   );
 }
 
