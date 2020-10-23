@@ -1,3 +1,3 @@
-export { default as Navbar } from './navbar';
-export { default as Footer } from './user-home';
+export { default as Navbar } from './NavBar';
+export { default as Footer } from './Footer';
 export { default as Home } from './Home';
