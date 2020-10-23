@@ -4,7 +4,7 @@ import logo from '../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-class NavBar extends React.Component {
+class Header extends React.Component {
   constructor() {
     super();
     this.state = { expanded: false };
@@ -89,4 +89,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default NavBar;
+export default Header;
