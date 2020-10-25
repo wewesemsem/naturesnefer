@@ -5,7 +5,17 @@
 }
 
 .Header {
-  padding: 1vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.Nav-logo {
+  height: 60px;
+  width: 60px;
 }
 
 .Nav-right {
@@ -14,13 +24,13 @@
   flex-wrap: nowrap;
 }
 
-/* @media (max-width: 500px) {
-  .Toggle {
-    padding-left: 13vh;
+.Nav-icon {
+  height: 20px;
+  width: 20px;
+}
+
+@media (min-width: 600px) {
+  .Header {
+    padding: 2vh;
   }
 }
-/* 
-.Toggle {
-  justify-self: flex-start;
-  background-color: orange;
-} */ 

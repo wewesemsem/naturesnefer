@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import searchLogo from '../../assets/search_icon.png';
+import cartLogo from '../../assets/cart_icon.png';
 
 class NavCart extends React.Component {
   render() {
     return (
-      <Button variant="clear" className="Button">
-        <img alt="" src={searchLogo} width="20" height="20" />
+      <Button variant="clear">
+        <img alt="" src={cartLogo} className="Nav-icon" />
       </Button>
     );
   }

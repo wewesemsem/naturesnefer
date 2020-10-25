@@ -33,7 +33,7 @@ class Header extends React.Component {
         variant="light"
         fixed="top"
       >
-        <Container className="Header">
+        <div className="Header">
           <Nav>
             <Link
               to="/"
@@ -42,8 +42,8 @@ class Header extends React.Component {
               }}
             >
               <Navbar.Brand href="/">
-                <img alt="" src={logo2} width="60" height="60" />
-                <img alt="" src={logo1} width="60" height="60" />
+                <img alt="" src={logo2} className="Nav-logo" />
+                <img alt="" src={logo1} className="Nav-logo" />
               </Navbar.Brand>
             </Link>
           </Nav>
@@ -79,7 +79,7 @@ class Header extends React.Component {
             <NavLogin />
             <NavCart />
           </Nav>
-        </Container>
+        </div>
       </Navbar>
     );
   }
