@@ -1,23 +1,15 @@
 import React from 'react';
-import { Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import searchLogo from '../../assets/search_icon.png';
 
-function NavSearch(props) {
-  const page = props.page;
-  const pageName = props.pageName;
-  const collapseNav = props.collapseNav;
-  return (
-    <Link
-      to={page}
-      onClick={() => {
-        collapseNav();
-      }}
-    >
-      <Navbar.Text href={page} class="nav-link">
-        {pageName}
-      </Navbar.Text>
-    </Link>
-  );
+class NavCart extends React.Component {
+  render() {
+    return (
+      <Button variant="clear" className="Button">
+        <img alt="" src={searchLogo} width="20" height="20" />
+      </Button>
+    );
+  }
 }
 
-export default NavSearch;
+export default NavCart;

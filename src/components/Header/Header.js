@@ -25,56 +25,62 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <Container>
-        <Navbar
-          collapseOnSelect
-          expand="lg"
-          expanded={this.state.expanded}
-          bg="light"
-          variant="light"
-          fixed="top"
-        >
-          <Link
-            to="/"
-            onClick={() => {
-              this.collapseNav();
-            }}
-          >
-            <Navbar.Brand href="/">
-              <img alt="" src={logo2} className="App-logo" />
-              <img alt="" src={logo1} className="App-logo" />
-            </Navbar.Brand>
-          </Link>
-          <Navbar.Toggle
-            onClick={() => this.toggleNav()}
-            aria-controls="responsive-navbar-nav"
-          />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-              <NavDropdown title="Shop" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/shop-hair">Hair</NavDropdown.Item>
-                <NavDropdown.Item href="/shop-skin">Skin</NavDropdown.Item>
-                <NavDropdown.Item href="/shop-all">Shop All</NavDropdown.Item>
-              </NavDropdown>
-              <HeaderLink
-                collapseNav={this.collapseNav}
-                page="/how-to-use"
-                pageName="How To Use"
-              />
-              <HeaderLink
-                collapseNav={this.collapseNav}
-                page="/about"
-                pageName="About"
-              />
-            </Nav>
-          </Navbar.Collapse>
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        expanded={this.state.expanded}
+        bg="light"
+        variant="light"
+        fixed="top"
+      >
+        <Container className="Header">
           <Nav>
+            <Link
+              to="/"
+              onClick={() => {
+                this.collapseNav();
+              }}
+            >
+              <Navbar.Brand href="/">
+                <img alt="" src={logo2} width="60" height="60" />
+                <img alt="" src={logo1} width="60" height="60" />
+              </Navbar.Brand>
+            </Link>
+          </Nav>
+
+          <Nav className="Toggle">
+            <Navbar.Toggle
+              onClick={() => this.toggleNav()}
+              aria-controls="responsive-navbar-nav"
+            />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="mr-auto">
+                <NavDropdown title="Shop" id="basic-nav-dropdown" drop="down">
+                  <NavDropdown.Item href="/shop-hair">Hair</NavDropdown.Item>
+                  <NavDropdown.Item href="/shop-skin">Skin</NavDropdown.Item>
+                  <NavDropdown.Item href="/shop-all">Shop All</NavDropdown.Item>
+                </NavDropdown>
+                <HeaderLink
+                  collapseNav={this.collapseNav}
+                  page="/how-to-use"
+                  pageName="How To Use"
+                />
+                <HeaderLink
+                  collapseNav={this.collapseNav}
+                  page="/about"
+                  pageName="About"
+                />
+              </Nav>
+            </Navbar.Collapse>
+          </Nav>
+
+          <Nav className="Nav-right">
             <NavSearch />
             <NavLogin />
             <NavCart />
           </Nav>
-        </Navbar>
-      </Container>
+        </Container>
+      </Navbar>
     );
   }
 }

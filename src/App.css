@@ -1,10 +1,26 @@
 .App-body {
   background-color: blue;
-  padding-top: 17vh;
-  padding-bottom: 3.8vh;
+  padding-top: 16vh;
+  padding-bottom: 3vh;
 }
 
-.App-logo {
-  height: 10vh;
-  width: 10vh;
+.Header {
+  padding: 1vh;
 }
+
+.Nav-right {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+/* @media (max-width: 500px) {
+  .Toggle {
+    padding-left: 13vh;
+  }
+}
+/* 
+.Toggle {
+  justify-self: flex-start;
+  background-color: orange;
+} */ 
