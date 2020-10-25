@@ -1,12 +1,12 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import searchLogo from '../../assets/search_icon.png';
+import loginLogo from '../../assets/login_icon.png';
 
 class NavLogin extends React.Component {
   render() {
     return (
       <Button variant="clear">
-        <img alt="" src={searchLogo} className="Nav-icon" />
+        <img alt="" src={loginLogo} className="Nav-icon" />
       </Button>
     );
   }
