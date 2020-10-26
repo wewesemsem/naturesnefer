@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, NavLink } from 'react-bootstrap';
 import logo1 from '../../assets/logo1.png';
 import logo2 from '../../assets/logo2.png';
 import { Link } from 'react-router-dom';
@@ -35,20 +35,6 @@ class Header extends React.Component {
       >
         <div className="Header">
           <Nav>
-            <Link
-              to="/"
-              onClick={() => {
-                this.collapseNav();
-              }}
-            >
-              <Navbar.Brand href="/">
-                <img alt="" src={logo2} className="Nav-logo" />
-                <img alt="" src={logo1} className="Nav-logo" />
-              </Navbar.Brand>
-            </Link>
-          </Nav>
-
-          <Nav className="Toggle">
             <Navbar.Toggle
               onClick={() => this.toggleNav()}
               aria-controls="responsive-navbar-nav"
@@ -72,6 +58,18 @@ class Header extends React.Component {
                 />
               </Nav>
             </Navbar.Collapse>
+          </Nav>
+
+          <Nav>
+            <Link
+              to="/"
+              onClick={() => {
+                this.collapseNav();
+              }}
+            >
+              <img alt="" src={logo2} className="Nav-logo" />
+              <img alt="" src={logo1} className="Nav-logo" />
+            </Link>
           </Nav>
 
           <Nav className="Nav-right">
