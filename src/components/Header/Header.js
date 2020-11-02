@@ -41,7 +41,7 @@ class Header extends React.Component {
             />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                <NavDropdown title="Shop" id="basic-nav-dropdown" drop="down">
+                <NavDropdown title="Shop" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/shop-hair">Hair</NavDropdown.Item>
                   <NavDropdown.Item href="/shop-skin">Skin</NavDropdown.Item>
                   <NavDropdown.Item href="/shop-all">Shop All</NavDropdown.Item>
@@ -72,10 +72,12 @@ class Header extends React.Component {
             </Link>
           </Nav>
 
-          <Nav className="Nav-right">
-            <NavSearch />
-            <NavLogin />
-            <NavCart />
+          <Nav>
+            <div className="Nav-right">
+              <NavSearch />
+              <NavLogin />
+              <NavCart />
+            </div>
           </Nav>
         </div>
       </Navbar>
