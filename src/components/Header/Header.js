@@ -27,7 +27,7 @@ class Header extends React.Component {
     return (
       <Navbar
         collapseOnSelect
-        expand="sm"
+        expand="md"
         expanded={this.state.expanded}
         bg="light"
         variant="light"
