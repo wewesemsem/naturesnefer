@@ -27,11 +27,11 @@ class Header extends React.Component {
     return (
       <Navbar
         collapseOnSelect
-        expand="lg"
+        expand="md"
         expanded={this.state.expanded}
         bg="light"
         variant="light"
-        fixed="top"
+        sticky="top"
       >
         <div className="Header">
           <Nav>
@@ -40,7 +40,7 @@ class Header extends React.Component {
               aria-controls="responsive-navbar-nav"
             />
             <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto">
+              <Nav>
                 <NavDropdown title="Shop" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/shop-hair">Hair</NavDropdown.Item>
                   <NavDropdown.Item href="/shop-skin">Skin</NavDropdown.Item>
