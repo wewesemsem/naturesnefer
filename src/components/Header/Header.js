@@ -27,7 +27,7 @@ class Header extends React.Component {
     return (
       <Navbar
         collapseOnSelect
-        expand="md"
+        expand="sm"
         expanded={this.state.expanded}
         bg="light"
         variant="light"
@@ -35,10 +35,24 @@ class Header extends React.Component {
       >
         <div className="Header">
           <Nav>
-            <Navbar.Toggle
-              onClick={() => this.toggleNav()}
-              aria-controls="responsive-navbar-nav"
-            />
+            <Link
+              to="/"
+              onClick={() => {
+                this.collapseNav();
+              }}
+            >
+              <img alt="" src={logo2} className="Nav-logo" />
+              <img alt="" src={logo1} className="Nav-logo" />
+            </Link>
+          </Nav>
+
+          <Navbar.Toggle
+            onClick={() => this.toggleNav()}
+            aria-controls="responsive-navbar-nav"
+            className="ml-auto"
+          />
+
+          <Nav>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav>
                 <NavDropdown title="Shop" id="basic-nav-dropdown">
@@ -58,18 +72,6 @@ class Header extends React.Component {
                 />
               </Nav>
             </Navbar.Collapse>
-          </Nav>
-
-          <Nav>
-            <Link
-              to="/"
-              onClick={() => {
-                this.collapseNav();
-              }}
-            >
-              <img alt="" src={logo2} className="Nav-logo" />
-              <img alt="" src={logo1} className="Nav-logo" />
-            </Link>
           </Nav>
 
           <Nav>
