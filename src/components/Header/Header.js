@@ -7,21 +7,22 @@ import NavSearch from './NavSearch';
 import NavLogin from './NavLogin';
 import NavCart from './NavCart';
 import ToggleDropdown from './ToggleDropdown';
+import CollapsableLinks from './CollapsableLinks';
 import '../../App.css';
 
 class Header extends React.Component {
   constructor() {
     super();
-    this.state = { expanded: false };
+    this.state = { expanded: false, menuOpen: false };
     this.toggleNav = this.toggleNav.bind(this);
     this.collapseNav = this.collapseNav.bind(this);
   }
-  toggleNav() {
-    let toggle = !this.state.expanded;
-    this.setState({ expanded: toggle });
-  }
   collapseNav() {
     this.setState({ expanded: false });
+  }
+  toggleNav() {
+    let menuOpen = !this.state.menuOpen;
+    this.setState({ menuOpen });
   }
   render() {
     return (
@@ -29,9 +30,9 @@ class Header extends React.Component {
         collapseOnSelect
         expand="md"
         expanded={this.state.expanded}
-        bg="clear"
+        bg="light"
         variant="light"
-        sticky="top"
+        fixed="top"
       >
         <div className="Header">
           <Nav>
@@ -52,7 +53,7 @@ class Header extends React.Component {
             className="ml-auto"
           />
 
-          <ToggleDropdown />
+          <CollapsableLinks />
 
           <Nav>
             <div className="Nav-right">
@@ -62,6 +63,7 @@ class Header extends React.Component {
             </div>
           </Nav>
         </div>
+        {this.state.menuOpen && <ToggleDropdown />}
       </Navbar>
     );
   }

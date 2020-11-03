@@ -1,8 +1,7 @@
 .App-body {
   background-color: blue;
-  padding: 1vh;
-  /* padding-top: 16vh;
-  padding-bottom: 3vh; */
+  padding-top: 16vh;
+  padding-bottom: 3vh;
 }
 
 .Header {
