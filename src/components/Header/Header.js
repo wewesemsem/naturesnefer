@@ -3,11 +3,10 @@ import { Navbar, Nav } from 'react-bootstrap';
 import logo1 from '../../assets/logo1.png';
 import logo2 from '../../assets/logo2.png';
 import { Link } from 'react-router-dom';
-import HeaderLink from './HeaderLink';
 import NavSearch from './NavSearch';
 import NavLogin from './NavLogin';
 import NavCart from './NavCart';
-import ShopDropdown from './ShopDropdown';
+import ToggleDropdown from './ToggleDropdown';
 import '../../App.css';
 
 class Header extends React.Component {
@@ -30,7 +29,7 @@ class Header extends React.Component {
         collapseOnSelect
         expand="md"
         expanded={this.state.expanded}
-        bg="light"
+        bg="clear"
         variant="light"
         sticky="top"
       >
@@ -53,23 +52,7 @@ class Header extends React.Component {
             className="ml-auto"
           />
 
-          <Nav>
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav>
-                <ShopDropdown />
-                <HeaderLink
-                  collapseNav={this.collapseNav}
-                  page="/how-to-use"
-                  pageName="How To Use"
-                />
-                <HeaderLink
-                  collapseNav={this.collapseNav}
-                  page="/about"
-                  pageName="About"
-                />
-              </Nav>
-            </Navbar.Collapse>
-          </Nav>
+          <ToggleDropdown />
 
           <Nav>
             <div className="Nav-right">
