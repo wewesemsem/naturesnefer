@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, NavDropdown, NavLink } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import logo1 from '../../assets/logo1.png';
 import logo2 from '../../assets/logo2.png';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,7 @@ import HeaderLink from './HeaderLink';
 import NavSearch from './NavSearch';
 import NavLogin from './NavLogin';
 import NavCart from './NavCart';
+import ShopDropdown from './ShopDropdown';
 import '../../App.css';
 
 class Header extends React.Component {
@@ -55,11 +56,7 @@ class Header extends React.Component {
           <Nav>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav>
-                <NavDropdown title="Shop" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/shop-hair">Hair</NavDropdown.Item>
-                  <NavDropdown.Item href="/shop-skin">Skin</NavDropdown.Item>
-                  <NavDropdown.Item href="/shop-all">Shop All</NavDropdown.Item>
-                </NavDropdown>
+                <ShopDropdown />
                 <HeaderLink
                   collapseNav={this.collapseNav}
                   page="/how-to-use"
