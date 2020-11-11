@@ -19,7 +19,11 @@ class ShopDropdown extends React.Component {
         {this.state.pages.map((page) => {
           return (
             <NavDropdown.Item>
-              <HeaderLink url={page.url} pageName={page.name} />
+              <HeaderLink
+                url={page.url}
+                pageName={page.name}
+                collapseNav={this.props.collapseNav}
+              />
             </NavDropdown.Item>
           );
         })}

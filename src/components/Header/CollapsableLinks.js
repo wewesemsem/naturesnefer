@@ -7,9 +7,17 @@ class CollapsableLinks extends React.Component {
   render() {
     return (
       <Nav>
-        <ShopDropdown />
-        <HeaderLink url="/how-to-use" pageName="How To Use" />
-        <HeaderLink url="/about" pageName="About" />
+        <ShopDropdown collapseNav={this.props.collapseNav} />
+        <HeaderLink
+          url="/how-to-use"
+          pageName="How To Use"
+          collapseNav={this.props.collapseNav}
+        />
+        <HeaderLink
+          url="/about"
+          pageName="About"
+          collapseNav={this.props.collapseNav}
+        />
       </Nav>
     );
   }
