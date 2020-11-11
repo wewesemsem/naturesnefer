@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import NavSearch from './Search';
 import NavLogin from './Login';
 import NavCart from './Cart';
-import ToggleDropdown from './ToggleDropdown';
 import CollapsableLinks from './CollapsableLinks';
 import '../../App.css';
 
@@ -53,7 +52,11 @@ class Header extends React.Component {
             className="ml-auto"
           />
 
-          <CollapsableLinks />
+          <Nav>
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <CollapsableLinks />
+            </Navbar.Collapse>
+          </Nav>
 
           <Nav>
             <div className="Nav-right">
@@ -63,7 +66,7 @@ class Header extends React.Component {
             </div>
           </Nav>
         </div>
-        {this.state.menuOpen && <ToggleDropdown />}
+        {this.state.menuOpen && <CollapsableLinks />}
       </Navbar>
     );
   }
