@@ -13,7 +13,7 @@ function HeaderLink(props) {
         collapseNav();
       }}
     >
-      <Navbar.Text href={page} class="nav-link">
+      <Navbar.Text href={page} className="nav-link">
         {pageName}
       </Navbar.Text>
     </Link>
