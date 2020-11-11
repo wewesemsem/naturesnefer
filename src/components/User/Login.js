@@ -21,6 +21,7 @@ class Login extends React.Component {
           <Link to={'/signup'} className="Auth-link">
             Create Account
           </Link>
+          <span>·</span>
           <Link to={'/forgot-password'} className="Auth-link">
             Forgot Password?
           </Link>
