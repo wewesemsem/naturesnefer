@@ -17,7 +17,7 @@ class Header extends React.Component {
     this.collapseNav = this.collapseNav.bind(this);
   }
   collapseNav() {
-    this.setState({ expanded: false });
+    this.setState({ expanded: false, menuOpen: false });
   }
   toggleNav() {
     let menuOpen = !this.state.menuOpen;
@@ -54,7 +54,7 @@ class Header extends React.Component {
 
           <Nav>
             <Navbar.Collapse id="responsive-navbar-nav">
-              <CollapsableLinks />
+              <CollapsableLinks collapseNav={this.collapseNav} />
             </Navbar.Collapse>
           </Nav>
 
@@ -66,7 +66,11 @@ class Header extends React.Component {
             </div>
           </Nav>
         </div>
-        {this.state.menuOpen && <CollapsableLinks />}
+        {this.state.menuOpen && (
+          <div className="Menu">
+            <CollapsableLinks collapseNav={this.collapseNav} />
+          </div>
+        )}
       </Navbar>
     );
   }

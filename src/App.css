@@ -34,3 +34,9 @@
     padding: 2vh;
   }
 }
+
+@media (min-width: 768px) {
+  .Menu {
+    display: none;
+  }
+}
