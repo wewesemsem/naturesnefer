@@ -5,7 +5,7 @@ class ToggleDropdown extends React.Component {
   render() {
     return (
       <div>
-        <CollapsableLinks />
+        hello
       </div>
     );
   }

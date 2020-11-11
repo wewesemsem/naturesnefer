@@ -10,16 +10,8 @@ class CollapsableLinks extends React.Component {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
             <ShopDropdown />
-            <HeaderLink
-              collapseNav={this.collapseNav}
-              page="/how-to-use"
-              pageName="How To Use"
-            />
-            <HeaderLink
-              collapseNav={this.collapseNav}
-              page="/about"
-              pageName="About"
-            />
+            <HeaderLink page="/how-to-use" pageName="How To Use" />
+            <HeaderLink page="/about" pageName="About" />
           </Nav>
         </Navbar.Collapse>
       </Nav>

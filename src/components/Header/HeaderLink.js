@@ -5,14 +5,8 @@ import { Link } from 'react-router-dom';
 function HeaderLink(props) {
   const page = props.page;
   const pageName = props.pageName;
-  const collapseNav = props.collapseNav;
   return (
-    <Link
-      to={page}
-      onClick={() => {
-        collapseNav();
-      }}
-    >
+    <Link to={page}>
       <Navbar.Text href={page} className="nav-link">
         {pageName}
       </Navbar.Text>
