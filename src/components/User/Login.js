@@ -11,7 +11,7 @@ class Login extends React.Component {
           <Form.Group>
             <Form.Control size="lg" type="text" placeholder="Email" />
             <br />
-            <Form.Control size="lg" type="text" placeholder="Password" />
+            <Form.Control size="lg" type="password" placeholder="Password" />
           </Form.Group>
           <Button variant="info" type="submit">
             Sign In

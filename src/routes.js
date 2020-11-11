@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route, Switch } from 'react-router-dom';
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Home, Login, SignUp, ForgotPassword, AccountInfo } from './components';
 import { me } from './store';
@@ -30,7 +30,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Fallback route */}
-        <Route component={Home} />
+        <Redirect to="/" />
       </Switch>
     );
   }

@@ -18,7 +18,7 @@ class ShopDropdown extends React.Component {
       <NavDropdown title="Shop" id="basic-nav-dropdown">
         {this.state.pages.map((page) => {
           return (
-            <NavDropdown.Item>
+            <NavDropdown.Item key={page.name}>
               <HeaderLink
                 url={page.url}
                 pageName={page.name}
