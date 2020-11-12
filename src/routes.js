@@ -30,7 +30,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Fallback route */}
-        <Redirect to="/" />
+        <Route component={Home} />
       </Switch>
     );
   }
