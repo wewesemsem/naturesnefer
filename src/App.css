@@ -79,3 +79,14 @@
   color: #003319;
   text-decoration: underline;
 }
+
+.Logout {
+  padding-top: 3vh;
+  color: rgb(2, 75, 2);
+  text-decoration: underline;
+}
+
+.Logout:hover {
+  color: #003319;
+  text-decoration: underline;
+}
