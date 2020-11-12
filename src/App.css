@@ -40,6 +40,11 @@
   }
 }
 
+.Words {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3a3939f1;
+}
+
 .Page-header {
   font-family: Arial, Helvetica, sans-serif;
   color: #3a3939f1;
@@ -47,11 +52,14 @@
   padding-bottom: 2vh;
 }
 
-.Auth-page {
-  padding-top: 4vh;
+.Center-column {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+}
+
+.Auth-page {
+  padding-top: 4vh;
 }
 
 .Form {
@@ -68,6 +76,17 @@
 }
 
 .Auth-link:hover {
+  color: #003319;
+  text-decoration: underline;
+}
+
+.Logout {
+  padding-top: 3vh;
+  color: rgb(2, 75, 2);
+  text-decoration: underline;
+}
+
+.Logout:hover {
   color: #003319;
   text-decoration: underline;
 }

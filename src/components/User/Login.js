@@ -14,7 +14,7 @@ class Login extends React.Component {
     const { handleSubmit, error } = this.props;
 
     return (
-      <Container className="Auth-page">
+      <Container className="Auth-page Center-column">
         <h1 className="Page-header">Login</h1>
         {error && error.response && (
           <Alert variant="danger"> {error.response.data} </Alert>
