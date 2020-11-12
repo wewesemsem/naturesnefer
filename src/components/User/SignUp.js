@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Container, Form } from 'react-bootstrap';
+import { Button, Container, Form, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth, me } from '../../store';
@@ -15,6 +15,9 @@ class SignUp extends React.Component {
     return (
       <Container className="Auth-page">
         <h1 className="Page-header">Create Account</h1>
+        {error && error.response && (
+          <Alert variant="danger"> {error.response.data} </Alert>
+        )}
         <Form className="Form" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control
@@ -53,7 +56,6 @@ class SignUp extends React.Component {
             Sign Up
           </Button>
         </Form>
-        {error && error.response && <div> {error.response.data} </div>}
       </Container>
     );
   }
