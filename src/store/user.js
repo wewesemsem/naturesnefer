@@ -32,17 +32,24 @@ export const me = () => async (dispatch) => {
   }
 };
 
-export const auth = (email, password, method) => async (dispatch) => {
+export const auth = (email, password, method, firstName, lastName) => async (
+  dispatch
+) => {
   let res;
   try {
-    res = await axios.post(`/auth/${method}`, { email, password });
+    res = await axios.post(`/auth/${method}`, {
+      email,
+      password,
+      firstName,
+      lastName,
+    });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
   }
 
   try {
     dispatch(getUser(res.data));
-    history.push('/home');
+    history.push('/');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -61,12 +68,12 @@ export const logout = () => async (dispatch) => {
 export const addAddress = (address) => async (dispatch) => {
   try {
     const { data } = await axios.post('/api/users', address);
-    console.log('DAATTAA', data);
     dispatch(addedAddress(data));
   } catch (err) {
     console.error(err);
   }
 };
+
 /**
  * REDUCER
  */

@@ -1,5 +1,4 @@
 .App-body {
-  background-color: blue;
   padding-top: 16vh;
   padding-bottom: 3vh;
 }
@@ -39,4 +38,36 @@
   .Menu {
     display: none;
   }
+}
+
+.Page-header {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3a3939f1;
+  font-weight: bolder;
+  padding-bottom: 2vh;
+}
+
+.Auth-page {
+  padding-top: 4vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.Form {
+  width: 80%;
+}
+
+.Auth-links {
+  padding-top: 2vh;
+}
+
+.Auth-link {
+  padding: 1.3vh;
+  color: rgb(2, 75, 2);
+}
+
+.Auth-link:hover {
+  color: #003319;
+  text-decoration: underline;
 }

@@ -3,9 +3,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import logo1 from '../../assets/logo1.png';
 import logo2 from '../../assets/logo2.png';
 import { Link } from 'react-router-dom';
-import NavSearch from './Search';
-import NavLogin from './Login';
-import NavCart from './Cart';
+import SearchBar from './SearchBar';
+import UserAccount from './UserAccount';
+import Cart from './Cart';
 import CollapsableLinks from './CollapsableLinks';
 import '../../App.css';
 
@@ -60,9 +60,9 @@ class Header extends React.Component {
 
           <Nav>
             <div className="Nav-right">
-              <NavSearch />
-              <NavLogin />
-              <NavCart />
+              <SearchBar />
+              <UserAccount />
+              <Cart />
             </div>
           </Nav>
         </div>
