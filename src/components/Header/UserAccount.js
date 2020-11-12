@@ -5,30 +5,23 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class UserAccount extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      url: '/login',
-    };
-  }
-
-  componentDidMount() {
-    const { isLoggedIn } = this.props;
-    if (isLoggedIn) this.setState({ url: '/user' });
-    this.setState({ url: '/login' });
-  }
-
-  render() {
-    return (
+const UserAccount = ({ isLoggedIn }) => (
+  <div>
+    {isLoggedIn ? (
       <Button variant="clear">
-        <Link to={this.state.url}>
+        <Link to={'/user'}>
           <img alt="" src={loginLogo} className="Nav-icon" />
         </Link>
       </Button>
-    );
-  }
-}
+    ) : (
+      <Button variant="clear">
+        <Link to={'/login'}>
+          <img alt="" src={loginLogo} className="Nav-icon" />
+        </Link>
+      </Button>
+    )}
+  </div>
+);
 
 /**
  * CONTAINER
