@@ -95,3 +95,11 @@
   width: 93%;
   padding-top: 3vh;
 }
+
+.Card-header:hover {
+  background-color: rgba(77, 143, 77, 0.144);
+}
+
+.Card-header {
+  background-color: rgba(63, 151, 41, 0.082);
+}

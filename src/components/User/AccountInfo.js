@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container, Accordion, Card, Button } from 'react-bootstrap';
+import { Container, Accordion, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { logout } from '../../store';
 
 class AccountInfo extends React.Component {
@@ -29,14 +28,16 @@ class AccountInfo extends React.Component {
           {this.state.pages.map((page) => {
             return (
               <Card key={page.eventKey}>
-                <Card.Header>
-                  <Accordion.Toggle
-                    as={Button}
-                    variant="link"
-                    eventKey={page.eventKey}
-                  >
-                    {page.name}
-                  </Accordion.Toggle>
+                <Card.Header className="Card-header">
+                  <div className="Card-header">
+                    <Accordion.Toggle
+                      as={Card.Header}
+                      variant="link"
+                      eventKey={page.eventKey}
+                    >
+                      <span className="Page-header">{page.name}</span>
+                    </Accordion.Toggle>
+                  </div>
                 </Card.Header>
                 <Accordion.Collapse eventKey={page.eventKey}>
                   <Card.Body>Hello! I'm the body</Card.Body>
