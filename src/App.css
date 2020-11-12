@@ -43,13 +43,14 @@
 .Words {
   font-family: Arial, Helvetica, sans-serif;
   color: #3a3939f1;
+  text-align: center;
 }
 
 .Page-header {
   font-family: Arial, Helvetica, sans-serif;
   color: #3a3939f1;
   font-weight: bolder;
-  padding-bottom: 2vh;
+  padding-bottom: 1vh;
 }
 
 .Center-column {
@@ -58,12 +59,18 @@
   align-items: center;
 }
 
+.R-clm {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+
 .Auth-page {
   padding-top: 4vh;
 }
 
 .Form {
-  width: 80%;
+  width: 93%;
 }
 
 .Auth-links {
@@ -102,4 +109,8 @@
 
 .Card-header {
   background-color: rgba(63, 151, 41, 0.082);
+}
+
+.Btm-pad {
+  padding-bottom: 2vh;
 }

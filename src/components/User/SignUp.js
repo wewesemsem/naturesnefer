@@ -61,6 +61,10 @@ class SignUp extends React.Component {
           <Link to={'/login'} className="Auth-link">
             Login Instead
           </Link>
+          <span>·</span>
+          <Link to={'/'} className="Auth-link">
+            Return to Shop
+          </Link>
         </div>
       </Container>
     );
