@@ -3,6 +3,7 @@ import { Button, Container, Form, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { auth, me } from '../../store';
+import { Link } from 'react-router-dom';
 
 class SignUp extends React.Component {
   componentDidMount() {
@@ -56,6 +57,11 @@ class SignUp extends React.Component {
             Sign Up
           </Button>
         </Form>
+        <div className="Auth-links">
+          <Link to={'/login'} className="Auth-link">
+            Login Instead
+          </Link>
+        </div>
       </Container>
     );
   }
