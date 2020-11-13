@@ -114,3 +114,19 @@
 .Btm-pad {
   padding-bottom: 2vh;
 }
+
+.Top-pad {
+  padding-top: 2vh;
+}
+
+.Home {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9vh;
+}
+
+.Video {
+  width: 100%;
+  height: 100%;
+}
