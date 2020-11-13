@@ -1,6 +1,7 @@
 .App-body {
   padding-top: 16vh;
-  padding-bottom: 3vh;
+  padding-bottom: 10vh;
+  background-color: darkmagenta;
 }
 
 .Header {
@@ -119,14 +120,16 @@
   padding-top: 2vh;
 }
 
-.Home {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 9vh;
-}
-
 .Video {
   width: 100%;
   height: 100%;
+}
+
+.Vid-wrap {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.Home {
+  margin-top: -8vh;
 }
