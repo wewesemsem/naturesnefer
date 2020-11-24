@@ -31,6 +31,12 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING,
   },
+  resetPasswordToken: {
+    type: Sequelize.STRING,
+  },
+  resetPasswordExpires: {
+    type: Sequelize.DATE,
+  },
 });
 
 module.exports = User;
