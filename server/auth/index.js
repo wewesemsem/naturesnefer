@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../db/models/user');
 const smtpTransport = require('../smtpTransport');
+const crypto = require('crypto');
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -58,7 +59,25 @@ router.post('/forgot-password', async (req, res, next) => {
       console.log('No such user found:', req.body.email);
       res.status(401).send('This email does not belong to an account.');
     } else {
-      //send email with reset password link
+      const token = crypto.randomBytes(20).toString('hex');
+      user.resetPasswordToken = token;
+      user.resetPasswordExpires = Date.now() + 3600000; //1 hour
+
+      const message =
+        'Reset:\n\n http://' + req.headers.host + '/reset/' + token;
+      const mailOptions = {
+        to: user.email,
+        subject: "Nature's Nefer Password Reset",
+        text: message,
+      };
+      smtpTransport.sendMail(mailOptions);
+      res
+        .status(200)
+        .send(
+          'An e-mail has been sent to ' +
+            user.email +
+            ' with further instructions.'
+        );
     }
   } catch (err) {
     next(err);
