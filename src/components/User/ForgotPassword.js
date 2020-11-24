@@ -2,12 +2,12 @@ import React from 'react';
 import { Button, Container, Form, Alert } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { auth } from '../../store';
+import { forgot } from '../../store';
 import { Link } from 'react-router-dom';
 
 class ForgotPassword extends React.Component {
   render() {
-    const { handleSubmit, error } = this.props;
+    const { handleSubmit, error, alert } = this.props;
 
     return (
       <Container className="Auth-page R-clm">
@@ -18,6 +18,7 @@ class ForgotPassword extends React.Component {
         {error && error.response && (
           <Alert variant="danger"> {error.response.data} </Alert>
         )}
+        {alert && <Alert variant="success"> {alert} </Alert>}
         <Form className="Form" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control
@@ -46,6 +47,7 @@ class ForgotPassword extends React.Component {
 const mapState = (state) => {
   return {
     error: state.user.error,
+    alert: state.user.alert,
   };
 };
 
@@ -54,7 +56,7 @@ const mapDispatch = (dispatch) => {
     handleSubmit(evt) {
       evt.preventDefault();
       const email = evt.target.email.value;
-      dispatch(auth(email));
+      dispatch(forgot(email));
     },
   };
 };
@@ -67,4 +69,5 @@ export default connect(mapState, mapDispatch)(ForgotPassword);
 ForgotPassword.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object,
+  alert: PropTypes.string,
 };

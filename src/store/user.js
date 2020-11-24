@@ -65,6 +65,15 @@ export const logout = () => async (dispatch) => {
   }
 };
 
+export const forgot = (email) => async (dispatch) => {
+  try {
+    const { data } = await axios.post('/auth/forgot-password', { email });
+    dispatch(getUser({ error: null, alert: data }));
+  } catch (wrongEmailError) {
+    return dispatch(getUser({ error: wrongEmailError }));
+  }
+};
+
 export const addAddress = (address) => async (dispatch) => {
   try {
     const { data } = await axios.post('/api/users', address);
