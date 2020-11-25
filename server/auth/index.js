@@ -62,6 +62,7 @@ router.post('/forgot-password', async (req, res, next) => {
       const token = crypto.randomBytes(20).toString('hex');
       user.resetPasswordToken = token;
       user.resetPasswordExpires = Date.now() + 3600000; //1 hour
+      user.save();
 
       const message =
         'Reset:\n\n http://' + req.headers.host + '/reset/' + token;
@@ -78,6 +79,56 @@ router.post('/forgot-password', async (req, res, next) => {
             user.email +
             ' with further instructions.'
         );
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/reset', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: req.body.token,
+        resetPasswordExpires: { $gt: Date.now() },
+      },
+    });
+    if (!user) {
+      console.log('Token expired or invalid.');
+      res.status(401).send('This link has expired.');
+    } else res.status(200);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/reset', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        resetPasswordToken: req.body.token,
+        resetPasswordExpires: { $gt: Date.now() },
+      },
+    });
+    if (!user) {
+      console.log('Token expired or invalid.');
+      res.status(401).send('This link has expired.');
+    } else {
+      user.password = req.body.password;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+      user.save();
+
+      const message =
+        "This is confirmation that the password for your Nature's Nefer account has been changed.";
+      const mailOptions = {
+        to: user.email,
+        subject: 'Your password has been changed',
+        text: message,
+      };
+      smtpTransport.sendMail(mailOptions);
+
+      req.login(user, (err) => (err ? next(err) : res.json(user)));
     }
   } catch (err) {
     next(err);
