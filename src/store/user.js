@@ -6,7 +6,6 @@ import history from '../history';
  */
 const GET_USER = 'GET_USER';
 const REMOVE_USER = 'REMOVE_USER';
-const ADD_ADDRESS = 'ADD_ADDRESS';
 
 /**
  * INITIAL STATE
@@ -18,7 +17,6 @@ const defaultUser = {};
  */
 const getUser = (user) => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
-const addedAddress = (address) => ({ type: ADD_ADDRESS, address });
 
 /**
  * THUNK CREATORS
@@ -74,12 +72,12 @@ export const forgot = (email) => async (dispatch) => {
   }
 };
 
-export const addAddress = (address) => async (dispatch) => {
+export const reset = (password, token) => async (dispatch) => {
   try {
-    const { data } = await axios.post('/api/users', address);
-    dispatch(addedAddress(data));
-  } catch (err) {
-    console.error(err);
+    const { data } = await axios.post('/auth/reset', { password, token });
+    dispatch(getUser({ error: null, alert: data }));
+  } catch (invalidTokenError) {
+    return dispatch(getUser({ error: invalidTokenError }));
   }
 };
 
@@ -92,8 +90,6 @@ export default function (state = defaultUser, action) {
       return action.user;
     case REMOVE_USER:
       return defaultUser;
-    case ADD_ADDRESS:
-      return action.address;
     default:
       return state;
   }

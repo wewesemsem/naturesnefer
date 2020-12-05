@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../db/models/user');
 const smtpTransport = require('../smtpTransport');
 const crypto = require('crypto');
+const { Op } = require('sequelize');
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -107,7 +108,7 @@ router.post('/reset', async (req, res, next) => {
     const user = await User.findOne({
       where: {
         resetPasswordToken: req.body.token,
-        resetPasswordExpires: { $gt: Date.now() },
+        resetPasswordExpires: { [Op.gt]: Date.now() },
       },
     });
     if (!user) {
