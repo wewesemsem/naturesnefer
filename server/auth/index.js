@@ -122,14 +122,17 @@ router.post('/reset', async (req, res, next) => {
 
       const message =
         "This is confirmation that the password for your Nature's Nefer account has been changed.";
+      const subject = 'Your password has been changed';
       const mailOptions = {
         to: user.email,
-        subject: 'Your password has been changed',
+        subject,
         text: message,
       };
       smtpTransport.sendMail(mailOptions);
 
-      req.login(user, (err) => (err ? next(err) : res.json(user)));
+      req.login(user, (err) =>
+        err ? next(err) : res.status(200).send(subject)
+      );
     }
   } catch (err) {
     next(err);

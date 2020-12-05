@@ -6,12 +6,27 @@ import { forgot } from '../../store';
 import { Link } from 'react-router-dom';
 
 class ForgotPassword extends React.Component {
+  constructor() {
+    super();
+    this.state = { email: '' };
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(evt) {
+    this.setState({ email: evt.target.value });
+  }
+  handleClick(evt) {
+    const { handleSubmit } = this.props;
+    evt.preventDefault();
+    this.setState({ email: '' });
+    handleSubmit(evt);
+  }
   render() {
-    const { handleSubmit, error, alert } = this.props;
+    const { error, alert } = this.props;
 
     return (
       <Container className="Auth-page R-clm">
-        <h2 className="Page-header">Reset Password</h2>
+        <h2 className="Page-header">Forgot Password</h2>
         <div className="Words Btm-pad">
           We will send you an email with a link to reset your password.
         </div>
@@ -19,14 +34,16 @@ class ForgotPassword extends React.Component {
           <Alert variant="danger"> {error.response.data} </Alert>
         )}
         {alert && <Alert variant="success"> {alert} </Alert>}
-        <Form className="Form" onSubmit={handleSubmit}>
+        <Form className="Form" onSubmit={this.handleClick}>
           <Form.Group>
             <Form.Control
               size="lg"
               type="email"
               placeholder="Email"
               name="email"
+              value={this.state.email}
               required
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Button variant="info" type="submit">
@@ -54,7 +71,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt) {
-      evt.preventDefault();
       const email = evt.target.email.value;
       dispatch(forgot(email));
     },

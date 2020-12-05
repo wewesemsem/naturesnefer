@@ -5,12 +5,37 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { reset } from '../../store';
 
+const initial_state = { password: '', password2: '', error: '' };
+
 class ResetPassword extends React.Component {
+  constructor() {
+    super();
+    this.state = initial_state;
+    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
   componentDidMount() {
     //check if token expired: GET auth/reset
   }
+  handleChange(evt) {
+    let state = { ...this.state };
+    state[evt.target.name] = evt.target.value;
+    this.setState(state);
+  }
+  handleClick(evt) {
+    evt.preventDefault();
+    const { handleSubmit, token } = this.props;
+    if (evt.target.password.value !== evt.target.password2.value) {
+      let state = { ...initial_state };
+      state.error = 'Passwords must match.';
+      this.setState(state);
+    } else {
+      this.setState(initial_state);
+      handleSubmit(evt, token);
+    }
+  }
   render() {
-    const { handleSubmit, error, token } = this.props;
+    const { error, alert } = this.props;
 
     return (
       <Container className="Auth-page Center-column">
@@ -18,7 +43,11 @@ class ResetPassword extends React.Component {
         {error && error.response && (
           <Alert variant="danger"> {error.response.data} </Alert>
         )}
-        <Form className="Form" onSubmit={(evt) => handleSubmit(evt, token)}>
+        {this.state.error && (
+          <Alert variant="danger"> {this.state.error} </Alert>
+        )}
+        {alert && <Alert variant="success"> {alert} </Alert>}
+        <Form className="Form" onSubmit={this.handleClick}>
           <Form.Group>
             <Form.Control
               size="lg"
@@ -26,14 +55,18 @@ class ResetPassword extends React.Component {
               placeholder="New Password"
               name="password"
               required
+              value={this.state.password}
+              onChange={this.handleChange}
             />
             <br />
             <Form.Control
               size="lg"
               type="password"
               placeholder="Confirm Password"
-              name="confirm-password"
+              name="password2"
               required
+              value={this.state.password2}
+              onChange={this.handleChange}
             />
           </Form.Group>
           <Button variant="info" type="submit">
@@ -52,13 +85,13 @@ const mapState = (state, ownProps) => {
   return {
     error: state.user.error,
     token: ownProps.match.params.token,
+    alert: state.user.alert,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     handleSubmit(evt, token) {
-      evt.preventDefault();
       const password = evt.target.password.value;
       dispatch(reset(password, token));
     },
@@ -73,4 +106,5 @@ export default connect(mapState, mapDispatch)(ResetPassword);
 ResetPassword.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   error: PropTypes.object,
+  alert: PropTypes.string,
 };
