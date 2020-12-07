@@ -9,6 +9,8 @@ import {
   ForgotPassword,
   AccountInfo,
   ResetPassword,
+  AllProducts,
+  SingleProduct,
 } from './components';
 import { me } from './store';
 
@@ -31,6 +33,8 @@ class Routes extends Component {
         <Route path="/signup" component={SignUp} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset/:token" component={ResetPassword} />
+        <Route path="/shop-all" component={AllProducts} />
+        <Route path="/product/:productId" component={SingleProduct} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
