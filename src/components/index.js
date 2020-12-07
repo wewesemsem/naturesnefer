@@ -6,3 +6,5 @@ export { default as AccountInfo } from './User/AccountInfo';
 export { default as SignUp } from './User/SignUp';
 export { default as ForgotPassword } from './User/ForgotPassword';
 export { default as ResetPassword } from './User/ResetPassword';
+export { default as AllProducts } from './Products/AllProducts';
+export { default as SingleProduct } from './Products/SingleProduct';

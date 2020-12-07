@@ -7,7 +7,7 @@ class HomeButtons extends React.Component {
     return (
       <Container className="Center-column home-btns">
         <h1 className="Page-header Home-header">Some catchy one liner.</h1>
-        <Link to={'/signup'} className="Home-header">
+        <Link to={'/shop-all'} className="Home-header">
           <Button variant="success" size="lg">
             Shop Now
           </Button>
