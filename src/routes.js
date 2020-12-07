@@ -34,7 +34,7 @@ class Routes extends Component {
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset/:token" component={ResetPassword} />
         <Route path="/shop-all" component={AllProducts} />
-        <Route path="/product/:productID" component={SingleProduct} />
+        <Route path="/product/:productId" component={SingleProduct} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

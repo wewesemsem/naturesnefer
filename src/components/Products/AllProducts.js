@@ -3,6 +3,7 @@ import { Container, Card, CardGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getAllProducts } from '../../store/products';
+import { Link } from 'react-router-dom';
 
 class AllProducts extends React.Component {
   componentDidMount() {
@@ -19,11 +20,13 @@ class AllProducts extends React.Component {
         <CardGroup>
           {products.map((product) => (
             <Card border="light" className="text-center marg">
-              <Card.Img variant="top" src={product.imgUrl} />
-              <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.price}</Card.Text>
-              </Card.Body>
+              <Link to={'product/' + product.id}>
+                <Card.Img variant="top" src={product.imgUrl} />
+                <Card.Body>
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>{product.price}</Card.Text>
+                </Card.Body>
+              </Link>
             </Card>
           ))}
         </CardGroup>
