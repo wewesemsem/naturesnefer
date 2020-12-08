@@ -145,3 +145,7 @@
 .marg {
   margin: 2.5vh;
 }
+
+.half {
+  width: 50%;
+}

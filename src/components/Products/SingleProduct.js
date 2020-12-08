@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getProductById } from '../../store/products';
@@ -13,13 +13,19 @@ class SingleProduct extends React.Component {
     return (
       <Container className="Center-column">
         <h1 className="Page-header">Single Product</h1>
-        <Card border="light" className="text-center marg">
-          <Card.Img variant="top" src={product.imgUrl} />
-          <Card.Body>
-            <Card.Title>{product.name}</Card.Title>
-            <Card.Text>{product.price}</Card.Text>
-          </Card.Body>
-        </Card>
+        <div className="Nav-right">
+          <Card border="light" className="half marg">
+            <Card.Img variant="top" src={product.imgUrl} />
+          </Card>
+          <Card border="light marg">
+            <Card.Body>
+              <Card.Title>{product.name}</Card.Title>
+              <Card.Text>{product.price}</Card.Text>
+              <Card.Text>{product.description}</Card.Text>
+              <Button variant="success">Add to Cart</Button>
+            </Card.Body>
+          </Card>
+        </div>
       </Container>
     );
   }
