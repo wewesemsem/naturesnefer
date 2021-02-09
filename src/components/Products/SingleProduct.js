@@ -2,11 +2,19 @@ import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getProductById } from '../../store/products';
+import { getProductById, addToCart } from '../../store';
 
 class SingleProduct extends React.Component {
+  constructor() {
+    super();
+    this.addToCart = this.addToCart.bind(this);
+  }
   componentDidMount() {
     this.props.getProduct(this.props.productId);
+  }
+  addToCart(evt) {
+    evt.preventDefault();
+    this.props.addToCart(this.props.product);
   }
   render() {
     const product = this.props.product;
@@ -22,7 +30,9 @@ class SingleProduct extends React.Component {
               <Card.Title>{product.name}</Card.Title>
               <Card.Text>{product.price}</Card.Text>
               <Card.Text>{product.description}</Card.Text>
-              <Button variant="success">Add to Cart</Button>
+              <Button variant="success" onClick={this.addToCart}>
+                Add to Cart
+              </Button>
             </Card.Body>
           </Card>
         </div>
@@ -44,6 +54,7 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     getProduct: (productId) => dispatch(getProductById(productId)),
+    addToCart: (product) => dispatch(addToCart(product)),
   };
 };
 
