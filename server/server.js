@@ -50,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  if (!req.session.guestCart) req.session.guestCart = {};
+  if (!req.session.guestCart) req.session.guestCart = [];
   next();
 });
 
