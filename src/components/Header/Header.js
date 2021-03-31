@@ -5,7 +5,7 @@ import logo2 from '../../assets/logo2.png';
 import { Link } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import UserAccount from './UserAccount';
-import Cart from './Cart';
+import Cart from './CartButton';
 import CollapsableLinks from './CollapsableLinks';
 import '../../App.css';
 

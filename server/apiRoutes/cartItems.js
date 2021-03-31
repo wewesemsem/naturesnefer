@@ -34,7 +34,6 @@ router.get('/:cartId', async (req, res, next) => {
 });
 
 //POST : cart item to guest cart
-let guestCartItemId = 0;
 router.post('/guest', async (req, res, next) => {
   try {
     const productToAdd = req.body.product;
@@ -55,7 +54,6 @@ router.post('/guest', async (req, res, next) => {
         quantity: 1,
         price: productToAdd.price,
         productId,
-        cartItemId: guestCartItemId++,
       };
       guestCart.push(newCartItem);
     }
