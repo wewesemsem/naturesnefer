@@ -25,7 +25,7 @@ class ForgotPassword extends React.Component {
     const { error, alert } = this.props;
 
     return (
-      <Container className="Auth-page R-clm">
+      <Container className="pad-t R-clm">
         <h2 className="Page-header">Forgot Password</h2>
         <div className="Words Btm-pad">
           We will send you an email with a link to reset your password.

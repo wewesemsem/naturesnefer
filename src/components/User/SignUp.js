@@ -14,7 +14,7 @@ class SignUp extends React.Component {
     const { handleSubmit, error } = this.props;
 
     return (
-      <Container className="Auth-page Center-column">
+      <Container className="pad-t Center-column">
         <h1 className="Page-header">Create Account</h1>
         {error && error.response && (
           <Alert variant="danger"> {error.response.data} </Alert>

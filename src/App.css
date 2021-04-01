@@ -65,7 +65,7 @@
   align-items: flex-start;
 }
 
-.Auth-page {
+.pad-t {
   padding-top: 4vh;
 }
 
@@ -148,4 +148,9 @@
 
 .half {
   width: 50%;
+}
+
+.cart-img {
+  width: auto;
+  height: 15vh;
 }

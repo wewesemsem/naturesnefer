@@ -16,7 +16,7 @@ class Cart extends React.Component {
       return <div>Your cart is empty!</div>;
     } else
       return (
-        <Container className="Center-column">
+        <Container className="pad-t Center-column">
           <h2 className="Page-header">Shopping Bag</h2>
           <ListGroup variant="flush" className="Form">
             {cartItems.map((item) => {
