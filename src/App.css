@@ -149,13 +149,3 @@
 .half {
   width: 50%;
 }
-
-.shoppingCart {
-  width: 50vh;
-  right: 90%;
-  position: relative;
-}
-
-.cartAnchor {
-  position: absolute;
-}

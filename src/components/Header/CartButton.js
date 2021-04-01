@@ -1,27 +1,17 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import cartLogo from '../../assets/cart_icon.png';
-import Cart from '../Cart';
+import { Link } from 'react-router-dom';
 
 class CartButton extends React.Component {
-  constructor() {
-    super();
-    this.state = { toggled: false };
-    this.toggleCart = this.toggleCart.bind(this);
-  }
-  toggleCart(evt) {
-    const prevState = this.state.toggled;
-    this.setState({
-      toggled: !prevState,
-    });
-  }
   render() {
     return (
       <div>
-        <Button variant="clear" onClick={this.toggleCart}>
-          <img alt="" src={cartLogo} className="Nav-icon" />
+        <Button variant="clear">
+          <Link to={'/shopping-cart'}>
+            <img alt="" src={cartLogo} className="Nav-icon" />
+          </Link>
         </Button>
-        {this.state.toggled && <Cart />}
       </div>
     );
   }

@@ -8,3 +8,4 @@ export { default as ForgotPassword } from './User/ForgotPassword';
 export { default as ResetPassword } from './User/ResetPassword';
 export { default as AllProducts } from './Products/AllProducts';
 export { default as SingleProduct } from './Products/SingleProduct';
+export { default as Cart } from './Cart/Cart';
