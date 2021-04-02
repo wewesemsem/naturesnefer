@@ -65,6 +65,12 @@
   align-items: flex-start;
 }
 
+.Rowwrp {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
 .pad-t {
   padding-top: 4vh;
 }
@@ -152,5 +158,17 @@
 
 .cart-img {
   width: auto;
-  height: 15vh;
+  height: 20vh;
+}
+
+.spc-btwn {
+  justify-content: space-between;
+}
+
+.pad2 {
+  padding: 2vh;
+}
+
+.pad1 {
+  padding: 1vh;
 }
