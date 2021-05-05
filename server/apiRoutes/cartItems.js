@@ -36,22 +36,29 @@ router.get('/:cartId', async (req, res, next) => {
 //POST : cart item to guest cart
 router.post('/guest', async (req, res, next) => {
   try {
-    const productToAdd = req.body.product;
+    const productToAdd = req.body.cartItem.product;
     const productId = productToAdd.id;
+    const quantity = parseInt(req.body.cartItem.quantity);
+    let updatedCartItem = null;
+
     let guestCart = req.session.guestCart;
     let newCartItem = false;
 
     guestCart.forEach((cartItem) => {
       if (cartItem.productId === productId) {
-        cartItem.quantity += 1;
-        newCartItem = cartItem;
+        updatedCartItem = cartItem;
       }
     });
+
+    if (updatedCartItem) {
+      updatedCartItem.quantity = parseInt(updatedCartItem.quantity) + quantity;
+      newCartItem = updatedCartItem;
+    }
 
     if (!newCartItem) {
       newCartItem = {
         name: productToAdd.name,
-        quantity: 1,
+        quantity,
         price: productToAdd.price,
         productId,
       };
@@ -69,7 +76,8 @@ router.post('/', async (req, res, next) => {
     if (!req.session.passport || !req.session.passport.user) {
       res.redirect(307, '/api/cartItems/guest');
     } else {
-      const productToAdd = req.body.product;
+      const productToAdd = req.body.cartItem.product;
+      const quantity = parseInt(req.body.cartItem.quantity);
       const productId = productToAdd.id;
       let validated = true;
 
@@ -84,15 +92,17 @@ router.post('/', async (req, res, next) => {
       userCartItems.forEach(async (cartItem) => {
         if (cartItem.dataValues.productId === productId) {
           validated = false;
-          const quantity = cartItem.dataValues.quantity + 1;
-          const updatedCartItem = await cartItem.update({ quantity });
+          const updatedQuantity = cartItem.dataValues.quantity + quantity;
+          const updatedCartItem = await cartItem.update({
+            quantity: updatedQuantity,
+          });
           res.status(201).json(updatedCartItem);
         }
       });
 
       if (validated) {
         const newCartItem = await CartItem.create({
-          quantity: 1,
+          quantity,
           price: productToAdd.price,
           productId,
           cartId: userCart.id,

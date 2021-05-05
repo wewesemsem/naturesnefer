@@ -1,9 +1,18 @@
 import React from 'react';
-import { Card, Container, ListGroup } from 'react-bootstrap';
+import { Card, Container, ListGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getOpenCartItemsThunk } from '../../store';
 import CartItem from './CartItem';
+import EmptyCart from './EmptyCart';
+
+const calculateTotol = (arr) => {
+  let subTotal = 0;
+  arr.forEach((item) => {
+    subTotal += item.quantity * item.price;
+  });
+  return subTotal;
+};
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -11,9 +20,9 @@ class Cart extends React.Component {
   }
   render() {
     const cartItems = this.props.cartItems;
-    console.log(cartItems);
+    const subTotal = calculateTotol(cartItems);
     if (!cartItems || !cartItems.length) {
-      return <div>Your cart is empty!</div>;
+      return <EmptyCart />;
     } else
       return (
         <Container className="pad-t R-clm">
@@ -29,9 +38,9 @@ class Cart extends React.Component {
               })}
             </ListGroup>
           </Card>
-          <Card className="Form Center-column pad2">
-            <Card.Title>Subtotal $100.00</Card.Title>
-            <Card.Title>Checkout</Card.Title>
+          <Card className="Form L-clm pad2">
+            <Card.Title>Subtotal ${subTotal}</Card.Title>
+            <Button>Checkout</Button>
           </Card>
         </Container>
       );

@@ -64,6 +64,11 @@
   flex-flow: column nowrap;
   align-items: flex-start;
 }
+.L-clm {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+}
 
 .Rowwrp {
   display: flex;
@@ -171,4 +176,12 @@
 
 .pad1 {
   padding: 1vh;
+}
+
+.pad18 {
+  padding: 18vh;
+}
+
+.pad-b1 {
+  padding-bottom: 1vh;
 }

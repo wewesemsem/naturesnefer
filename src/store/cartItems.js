@@ -32,9 +32,9 @@ export const getOpenCartItemsThunk = () => async (dispatch) => {
   }
 };
 
-export const addToCart = (product) => async (dispatch) => {
+export const addToCart = (cartItem) => async (dispatch) => {
   try {
-    const res = await axios.post('/api/cartItems/', { product });
+    const res = await axios.post('/api/cartItems/', { cartItem });
     dispatch(addCartItem(res.data));
   } catch (err) {
     console.error(err);
