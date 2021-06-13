@@ -52,7 +52,11 @@ router.post('/guest', async (req, res, next) => {
 
     if (updatedCartItem) {
       updatedCartItem.quantity = parseInt(updatedCartItem.quantity) + quantity;
-      newCartItem = updatedCartItem;
+      if (updatedCartItem.quantity > process.env.MAX_QTY_PER_ITEM) {
+        res.status(401).send('Quantity exceeds maximum amount.');
+      } else {
+        newCartItem = updatedCartItem;
+      }
     }
 
     if (!newCartItem) {
@@ -93,10 +97,14 @@ router.post('/', async (req, res, next) => {
         if (cartItem.dataValues.productId === productId) {
           validated = false;
           const updatedQuantity = cartItem.dataValues.quantity + quantity;
-          const updatedCartItem = await cartItem.update({
-            quantity: updatedQuantity,
-          });
-          res.status(201).json(updatedCartItem);
+          if (updatedQuantity > process.env.MAX_QTY_PER_ITEM) {
+            res.status(401).send('Quantity exceeds maximum amount.');
+          } else {
+            const updatedCartItem = await cartItem.update({
+              quantity: updatedQuantity,
+            });
+            res.status(201).json(updatedCartItem);
+          }
         }
       });
 

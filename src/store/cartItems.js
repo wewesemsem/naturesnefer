@@ -50,7 +50,14 @@ export default function (state = cartItems, action) {
       return action.cartItems;
     case ADD_CART_ITEM:
       let newState = [...state];
-      newState.push(action.cartItem);
+      let found = false;
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].name === action.cartItem.name) {
+          found = true;
+          newState[i] = action.cartItem;
+        }
+      }
+      if (!found) newState.push(action.cartItem);
       return newState;
     default:
       return state;
