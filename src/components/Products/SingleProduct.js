@@ -11,7 +11,11 @@ const MAX_QTY_PER_ITEM = 5;
 class SingleProduct extends React.Component {
   constructor() {
     super();
-    this.state = { show: false, alert: false };
+    this.state = {
+      show: false,
+      alert: false,
+      remainingQuantityAllowed: MAX_QTY_PER_ITEM,
+    };
     this.handleClose = this.handleClose.bind(this);
     this.showAlert = this.showAlert.bind(this);
     this.hideAlert = this.hideAlert.bind(this);
@@ -34,7 +38,9 @@ class SingleProduct extends React.Component {
           parseInt(cartItem.quantity) + parseInt(quantity) >
           MAX_QTY_PER_ITEM
         ) {
-          this.showAlert();
+          const remainingQuantityAllowed =
+            MAX_QTY_PER_ITEM - parseInt(cartItem.quantity);
+          this.showAlert(remainingQuantityAllowed);
           verifiedQty = false;
         }
         break;
@@ -48,7 +54,8 @@ class SingleProduct extends React.Component {
       this.handleShow();
     }
   }
-  showAlert() {
+  showAlert(remainingQuantityAllowed) {
+    this.setState({ remainingQuantityAllowed });
     this.setState({ alert: true });
   }
   hideAlert() {
@@ -84,7 +91,7 @@ class SingleProduct extends React.Component {
               />
               {this.state.alert && (
                 <Alert variant="danger">
-                  {`Oops! This item's quantity may not exceed ${MAX_QTY_PER_ITEM}.`}
+                  {`Oops! You can add ${this.state.remainingQuantityAllowed} more of this item to your cart.`}
                 </Alert>
               )}
             </Card.Body>
