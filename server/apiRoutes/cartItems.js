@@ -144,9 +144,11 @@ router.put('/', async (req, res, next) => {
         });
       } else {
         //USER CART
-        const userId = req.session.passport.user;
-        let userCart = await Cart.findOpenCart(userId);
-        let userCartItems = await userCart.getCartItems();
+        let itemToUpdate = await CartItem.findOne({
+          where: { id: productToUpdate.id },
+        });
+        await itemToUpdate.update({ quantity: updatedQuantity });
+        updatedCartItem = itemToUpdate;
       }
 
       res.status(200).json(updatedCartItem);
