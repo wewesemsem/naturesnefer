@@ -5,6 +5,7 @@ import axios from 'axios';
  */
 const GET_OPEN_CART_ITEMS = 'GET_OPEN_CART_ITEMS';
 const ADD_CART_ITEM = 'ADD_CART_ITEM';
+const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
 
 /**
  * INITIAL STATE
@@ -19,6 +20,10 @@ const getOpenCartItems = (cartItems) => ({
   cartItems,
 });
 const addCartItem = (cartItem) => ({ type: ADD_CART_ITEM, cartItem });
+const updateCartItem = (updatedCartItem) => ({
+  type: UPDATE_CART_ITEM,
+  updatedCartItem,
+});
 
 /**
  * THUNK CREATORS
@@ -36,6 +41,18 @@ export const addToCart = (cartItem) => async (dispatch) => {
   try {
     const res = await axios.post('/api/cartItems/', { cartItem });
     dispatch(addCartItem(res.data));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateCart = (cartItem, updatedQuantity) => async (dispatch) => {
+  try {
+    const res = await axios.put('/api/cartItems/', {
+      cartItem,
+      updatedQuantity,
+    });
+    dispatch(updateCartItem(res.data));
   } catch (err) {
     console.error(err);
   }
@@ -59,6 +76,14 @@ export default function (state = cartItems, action) {
       }
       if (!found) newState.push(action.cartItem);
       return newState;
+    case UPDATE_CART_ITEM:
+      let updatedState = [...state];
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].name === action.updatedCartItem.name) {
+          updatedState[i] = action.updatedCartItem;
+        }
+      }
+      return updatedState;
     default:
       return state;
   }

@@ -126,24 +126,31 @@ router.post('/', async (req, res, next) => {
 //PUT : (update) cart item in open cart
 router.put('/', async (req, res, next) => {
   try {
-    const productToUpdate = req.body.product;
-    const updatedQuantity = req.body.quantity;
-    let updatedCartItem;
-
-    //GUEST CART
-    if (!req.session.passport || !req.session.passport.user) {
-      let guestCart = req.session.guestCart;
-      updatedCartItem = guestCart[productToUpdate.id];
-      updatedCartItem.quantity = updatedQuantity;
+    const productToUpdate = req.body.cartItem;
+    const updatedQuantity = parseInt(req.body.updatedQuantity);
+    if (updatedQuantity > process.env.MAX_QTY_PER_ITEM) {
+      res.status(401).send('Quantity exceeds maximum amount.');
     } else {
-      //USER CART
-      const userId = req.session.passport.user;
-      let userCart = await Cart.findOpenCart(userId);
-      let userCartItems = await userCart.getCartItems();
-      console.log('HERE------> ', userCartItems);
-    }
+      let updatedCartItem;
 
-    res.status(200).json(updatedCartItem);
+      //GUEST CART
+      if (!req.session.passport || !req.session.passport.user) {
+        let guestCart = req.session.guestCart;
+        guestCart.forEach((cartItem) => {
+          if (cartItem.name === productToUpdate.name) {
+            updatedCartItem = cartItem;
+            updatedCartItem.quantity = updatedQuantity;
+          }
+        });
+      } else {
+        //USER CART
+        const userId = req.session.passport.user;
+        let userCart = await Cart.findOpenCart(userId);
+        let userCartItems = await userCart.getCartItems();
+      }
+
+      res.status(200).json(updatedCartItem);
+    }
   } catch (err) {
     next(err);
   }

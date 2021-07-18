@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../../store/products';
 import PropTypes from 'prop-types';
+import { updateCart } from '../../store/cartItems';
+
 const MAX_QTY_PER_ITEM = 5;
 
 const makeArrSizeN = (n) => {
@@ -40,9 +42,10 @@ class ItemQuantity extends React.Component {
     }
   }
   handleChange(evt) {
-    this.setState({ quantity: evt.target.value });
+    const updatedQuantity = evt.target.value;
+    this.setState({ quantity: updatedQuantity });
     if (this.props.type === 'update') {
-      //make POST api call
+      this.props.updateCartItem(this.props.currentItem, updatedQuantity);
     }
   }
   handleClickAdd(evt) {
@@ -95,6 +98,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
+    updateCartItem: (cartItem, quantity) =>
+      dispatch(updateCart(cartItem, quantity)),
   };
 };
 
