@@ -16,16 +16,27 @@ const makeArrSizeN = (n) => {
 class ItemQuantity extends React.Component {
   constructor() {
     super();
-    this.state = { quantity: null };
+    this.state = { quantity: null, inventory: null, soldOut: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleClickAdd = this.handleClickAdd.bind(this);
   }
   componentDidMount() {
-    this.setState({ quantity: this.props.quantity });
+    let soldOut = false;
+    if (!this.props.inventory) soldOut = true;
+    this.setState({
+      quantity: this.props.quantity,
+      inventory: this.props.inventory,
+      soldOut,
+    });
   }
   componentDidUpdate(prevProps) {
     if (this.props.quantity !== prevProps.quantity) {
       this.setState({ quantity: this.props.quantity });
+    }
+    if (this.props.inventory !== prevProps.inventory) {
+      let soldOut = false;
+      if (!this.props.inventory) soldOut = true;
+      this.setState({ inventory: this.props.inventory, soldOut });
     }
   }
   handleChange(evt) {
@@ -39,7 +50,8 @@ class ItemQuantity extends React.Component {
     this.setState({ quantity: 1 });
   }
   render() {
-    const arr = makeArrSizeN(MAX_QTY_PER_ITEM);
+    const inventory = this.state.inventory;
+    const arr = makeArrSizeN(Math.min(MAX_QTY_PER_ITEM, inventory));
     const type = this.props.type;
 
     return (
@@ -50,13 +62,19 @@ class ItemQuantity extends React.Component {
             value={this.state.quantity}
             onChange={this.handleChange}
           >
-            {arr.map((n) => {
-              return <option>{n}</option>;
-            })}
+            {!this.state.soldOut &&
+              arr.map((n) => {
+                return <option>{n}</option>;
+              })}
+            {this.state.soldOut && <option>Sold Out</option>}
           </Form.Control>
         </Form>
         {type === 'add' && (
-          <Button variant="success" onClick={this.handleClickAdd}>
+          <Button
+            disabled={this.state.soldOut}
+            variant="success"
+            onClick={this.handleClickAdd}
+          >
             Add to Cart
           </Button>
         )}
