@@ -159,10 +159,22 @@ router.put('/', async (req, res, next) => {
 });
 
 //DELETE : cart item from open cart
-router.get('/:productId', async (req, res, next) => {
+router.delete('/:itemId', async (req, res, next) => {
   try {
-    const singleProduct = await Product.findByPk(req.params.productId);
-    res.status(200).json(singleProduct);
+    const cartItemId = parseInt(req.params.itemId);
+    //GUEST CART
+    if (!req.session.passport || !req.session.passport.user) {
+      let guestCart = req.session.guestCart;
+      guestCart.forEach((cartItem, idx) => {
+        if (cartItem.productId === cartItemId) {
+          guestCart.splice(idx, 1);
+        }
+      });
+    } else {
+      //USER CART
+      await CartItem.destroy({ where: { id: cartItemId } });
+    }
+    res.status(204).send('Item deleted from cart!');
   } catch (err) {
     next(err);
   }

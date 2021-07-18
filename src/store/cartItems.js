@@ -6,6 +6,7 @@ import axios from 'axios';
 const GET_OPEN_CART_ITEMS = 'GET_OPEN_CART_ITEMS';
 const ADD_CART_ITEM = 'ADD_CART_ITEM';
 const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+const DELETE_CART_ITEM = 'DELETE_CART_ITEM';
 
 /**
  * INITIAL STATE
@@ -23,6 +24,10 @@ const addCartItem = (cartItem) => ({ type: ADD_CART_ITEM, cartItem });
 const updateCartItem = (updatedCartItem) => ({
   type: UPDATE_CART_ITEM,
   updatedCartItem,
+});
+const deleteCartItem = (cartItem) => ({
+  type: DELETE_CART_ITEM,
+  cartItem,
 });
 
 /**
@@ -58,6 +63,16 @@ export const updateCart = (cartItem, updatedQuantity) => async (dispatch) => {
   }
 };
 
+export const deleteFromCart = (cartItem) => async (dispatch) => {
+  try {
+    if (!cartItem.id) cartItem.id = cartItem.productId;
+    await axios.delete(`/api/cartItems/${cartItem.id}`);
+    dispatch(deleteCartItem(cartItem));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 /**
  * REDUCER
  */
@@ -65,6 +80,7 @@ export default function (state = cartItems, action) {
   switch (action.type) {
     case GET_OPEN_CART_ITEMS:
       return action.cartItems;
+
     case ADD_CART_ITEM:
       let newState = [...state];
       let found = false;
@@ -76,6 +92,7 @@ export default function (state = cartItems, action) {
       }
       if (!found) newState.push(action.cartItem);
       return newState;
+
     case UPDATE_CART_ITEM:
       let updatedState = [...state];
       for (let i = 0; i < state.length; i++) {
@@ -84,6 +101,15 @@ export default function (state = cartItems, action) {
         }
       }
       return updatedState;
+
+    case DELETE_CART_ITEM:
+      let deletedState = [...state];
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].name === action.cartItem.name) {
+          deletedState.splice(i, 1);
+        }
+      }
+      return deletedState;
     default:
       return state;
   }

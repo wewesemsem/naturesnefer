@@ -1,14 +1,22 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { getAllProducts } from '../../store/products';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ItemQuantity from './ItemQuantity';
+import { deleteFromCart } from '../../store/cartItems';
 
 class CartItem extends React.Component {
+  constructor() {
+    super();
+    this.handleDelete = this.handleDelete.bind(this);
+  }
   componentDidMount() {
     this.props.getAllProducts();
+  }
+  handleDelete() {
+    this.props.deleteCartItem(this.props.cartItem);
   }
   render() {
     const products = this.props.products;
@@ -39,8 +47,9 @@ class CartItem extends React.Component {
             />
             <div>${cartItem.price}</div>
             <div className="Nav-right">
-              <Link className="pad1">Edit</Link>
-              <Link className="pad1">Delete</Link>
+              <Button variant="outline-danger" onClick={this.handleDelete}>
+                Delete
+              </Button>
             </div>
           </div>
           <div>${totalPrice}</div>
@@ -62,6 +71,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getAllProducts: () => dispatch(getAllProducts()),
+    deleteCartItem: (cartItem) => dispatch(deleteFromCart(cartItem)),
   };
 };
 
