@@ -11,6 +11,7 @@ import {
   ResetPassword,
   AllProducts,
   SingleProduct,
+  Cart,
 } from './components';
 import { me } from './store';
 
@@ -35,6 +36,7 @@ class Routes extends Component {
         <Route path="/reset/:token" component={ResetPassword} />
         <Route path="/shop-all" component={AllProducts} />
         <Route path="/product/:productId" component={SingleProduct} />
+        <Route path="/shopping-cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

@@ -38,7 +38,7 @@ class ResetPassword extends React.Component {
     const { error, alert } = this.props;
 
     return (
-      <Container className="Auth-page Center-column">
+      <Container className="pad-t Center-column">
         <h1 className="Page-header">Reset Password</h1>
         {error && error.response && (
           <Alert variant="danger"> {error.response.data} </Alert>

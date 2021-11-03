@@ -64,8 +64,19 @@
   flex-flow: column nowrap;
   align-items: flex-start;
 }
+.L-clm {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+}
 
-.Auth-page {
+.Rowwrp {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.pad-t {
   padding-top: 4vh;
 }
 
@@ -144,4 +155,33 @@
 
 .marg {
   margin: 2.5vh;
+}
+
+.half {
+  width: 50%;
+}
+
+.cart-img {
+  width: auto;
+  height: 20vh;
+}
+
+.spc-btwn {
+  justify-content: space-between;
+}
+
+.pad2 {
+  padding: 2vh;
+}
+
+.pad1 {
+  padding: 1vh;
+}
+
+.pad18 {
+  padding: 18vh;
+}
+
+.pad-b1 {
+  padding-bottom: 1vh;
 }
