@@ -51,15 +51,16 @@ router.post('/guest', async (req, res, next) => {
     });
 
     if (updatedCartItem) {
-      updatedCartItem.quantity = parseInt(updatedCartItem.quantity) + quantity;
-      if (updatedCartItem.quantity > process.env.MAX_QTY_PER_ITEM) {
+      const updatedCartItemQuantity =
+        parseInt(updatedCartItem.quantity) + quantity;
+      if (updatedCartItemQuantity > process.env.MAX_QTY_PER_ITEM) {
         res.status(401).send('Quantity exceeds maximum amount.');
+        return;
       } else {
+        updatedCartItem.quantity = updatedCartItemQuantity;
         newCartItem = updatedCartItem;
       }
-    }
-
-    if (!newCartItem) {
+    } else if (!newCartItem) {
       newCartItem = {
         name: productToAdd.name,
         quantity,
@@ -99,6 +100,7 @@ router.post('/', async (req, res, next) => {
           const updatedQuantity = cartItem.dataValues.quantity + quantity;
           if (updatedQuantity > process.env.MAX_QTY_PER_ITEM) {
             res.status(401).send('Quantity exceeds maximum amount.');
+            return;
           } else {
             const updatedCartItem = await cartItem.update({
               quantity: updatedQuantity,
@@ -130,6 +132,7 @@ router.put('/', async (req, res, next) => {
     const updatedQuantity = parseInt(req.body.updatedQuantity);
     if (updatedQuantity > process.env.MAX_QTY_PER_ITEM) {
       res.status(401).send('Quantity exceeds maximum amount.');
+      return;
     } else {
       let updatedCartItem;
 
