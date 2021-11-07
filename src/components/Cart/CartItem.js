@@ -38,7 +38,10 @@ class CartItem extends React.Component {
         <div className="Nav-right spc-btwn">
           <img alt="" src={imgUrl} className="cart-img" />
           <div className="Center-column">
-            <h5>{cartItem.name}</h5>
+            <Link to={`/product/${cartItem.productId}`}>
+              {' '}
+              <h5>{cartItem.name}</h5>{' '}
+            </Link>
             <ItemQuantity
               currentItem={cartItem}
               inventory={inventory}
