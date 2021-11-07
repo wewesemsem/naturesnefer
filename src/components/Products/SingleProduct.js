@@ -15,6 +15,7 @@ class SingleProduct extends React.Component {
       show: false,
       alert: false,
       remainingQuantityAllowed: MAX_QTY_PER_ITEM,
+      quantity: null,
     };
     this.handleClose = this.handleClose.bind(this);
     this.showAlert = this.showAlert.bind(this);
@@ -51,7 +52,7 @@ class SingleProduct extends React.Component {
       let newCartItem = { product, quantity };
       this.props.addToCart(newCartItem);
       this.hideAlert();
-      this.handleShow();
+      this.handleShow(quantity);
     }
   }
   showAlert(remainingQuantityAllowed) {
@@ -64,8 +65,8 @@ class SingleProduct extends React.Component {
   handleClose() {
     this.setState({ show: false });
   }
-  handleShow() {
-    this.setState({ show: true });
+  handleShow(quantity) {
+    this.setState({ show: true, quantity });
   }
   render() {
     const product = this.props.product;
@@ -89,11 +90,17 @@ class SingleProduct extends React.Component {
                 addToCart={this.addToCart}
                 type="add"
               />
-              {this.state.alert && (
+              {this.state.alert && this.state.remainingQuantityAllowed >= 1 && (
                 <Alert variant="danger">
-                  {`Oops! You can add ${this.state.remainingQuantityAllowed} more of this item to your cart.`}
+                  {`That quantity is currently unavailable. Please choose ${this.state.remainingQuantityAllowed} or less.`}
                 </Alert>
               )}
+              {this.state.alert &&
+                this.state.remainingQuantityAllowed === 0 && (
+                  <Alert variant="danger">
+                    {`You've already added the maximum available quantity to your bag.`}
+                  </Alert>
+                )}
             </Card.Body>
           </Card>
         </div>
@@ -103,7 +110,11 @@ class SingleProduct extends React.Component {
           onHide={handleClose}
           centered="true"
         >
-          <AddedToCartModal handleClose={handleClose} />
+          <AddedToCartModal
+            product={product}
+            handleClose={handleClose}
+            quantity={this.state.quantity}
+          />
         </Modal>
       </Container>
     );
