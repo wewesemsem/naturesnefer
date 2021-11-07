@@ -50,7 +50,6 @@ class ItemQuantity extends React.Component {
   }
   handleClickAdd(evt) {
     this.props.addToCart(evt, this.state.quantity);
-    this.setState({ quantity: 1 });
   }
   render() {
     const inventory = this.state.inventory;
