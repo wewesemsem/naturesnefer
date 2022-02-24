@@ -1,8 +1,7 @@
 import React from 'react';
-import movieWebM from '../assets/test.webm';
-import movieMP4 from '../assets/test.mp4';
+import movieWebM from '../assets/nile-sunset.webm';
+import movieMP4 from '../assets/nile-sunset.mp4';
 import FeaturedProducts from './Products/Featured';
-import { Container } from 'react-bootstrap';
 import HomeButtons from './HomeButtons';
 
 class Home extends React.Component {
