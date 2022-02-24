@@ -16,7 +16,9 @@ class AllProducts extends React.Component {
     }
     return (
       <Container className="Center-column">
-        <h1 className="Page-header">All Products</h1>
+        {!this.props.filter && (
+          <h1 className="Page-header">Shop All Products</h1>
+        )}
         <CardGroup>
           {products.map((product) => (
             <Card border="light" className="text-center marg nowrap">
