@@ -19,7 +19,7 @@ class AllProducts extends React.Component {
         <h1 className="Page-header">All Products</h1>
         <CardGroup>
           {products.map((product) => (
-            <Card border="light" className="text-center marg">
+            <Card border="light" className="text-center marg nowrap">
               <Link to={'product/' + product.id}>
                 <Card.Img variant="top" src={product.imgUrl} />
                 <Card.Body>

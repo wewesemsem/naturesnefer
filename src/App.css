@@ -186,3 +186,7 @@
 .pad-b1 {
   padding-bottom: 1vh;
 }
+
+.nowrap {
+  white-space: nowrap;
+}
