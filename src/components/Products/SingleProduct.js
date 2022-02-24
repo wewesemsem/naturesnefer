@@ -82,7 +82,7 @@ class SingleProduct extends React.Component {
           <Card border="light marg">
             <Card.Body>
               <Card.Title>{product.name}</Card.Title>
-              <Card.Text>{product.price}</Card.Text>
+              <Card.Text>${product.price}</Card.Text>
               <Card.Text>{product.description}</Card.Text>
               <ItemQuantity
                 inventory={product.inventory}

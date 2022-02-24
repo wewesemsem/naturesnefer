@@ -24,7 +24,7 @@ class AllProducts extends React.Component {
                 <Card.Img variant="top" src={product.imgUrl} />
                 <Card.Body>
                   <Card.Title>{product.name}</Card.Title>
-                  <Card.Text>{product.price}</Card.Text>
+                  <Card.Text>${product.price}</Card.Text>
                 </Card.Body>
               </Link>
             </Card>

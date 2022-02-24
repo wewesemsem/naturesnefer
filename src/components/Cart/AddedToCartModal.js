@@ -13,7 +13,7 @@ class AddToCartModal extends React.Component {
           <Modal.Title>This item was added to your bag.</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {product.name} {product.price} Quantity: {quantity}
+          {product.name} ${product.price} Quantity: {quantity}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" href="/shopping-cart">
