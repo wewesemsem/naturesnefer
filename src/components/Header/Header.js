@@ -60,7 +60,7 @@ class Header extends React.Component {
 
           <Nav>
             <div className="Nav-right">
-              <SearchBar />
+              {/* <SearchBar /> */}
               <UserAccount />
               <Cart />
             </div>
