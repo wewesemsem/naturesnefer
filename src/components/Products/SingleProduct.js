@@ -90,6 +90,7 @@ class SingleProduct extends React.Component {
                 addToCart={this.addToCart}
                 type="add"
               />
+              <div className="pg-break"> </div>
               {this.state.alert && this.state.remainingQuantityAllowed >= 1 && (
                 <Alert variant="danger">
                   {`That quantity is currently unavailable. Please choose ${this.state.remainingQuantityAllowed} or less.`}

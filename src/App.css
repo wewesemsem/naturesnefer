@@ -190,3 +190,7 @@
 .nowrap {
   white-space: nowrap;
 }
+
+.pg-break {
+  margin: 1vh;
+}
