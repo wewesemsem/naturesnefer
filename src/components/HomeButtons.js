@@ -7,7 +7,7 @@ class HomeButtons extends React.Component {
     return (
       <Container className="Center-column home-btns">
         <h1 className="Page-header Home-header">
-          100% natural, organic hair & skin care for all.
+          100% natural, organic hair & skin care for all!
         </h1>
         <Link to={'/shop-all'} className="Home-header">
           <Button variant="success" size="lg">
