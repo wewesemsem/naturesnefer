@@ -116,6 +116,7 @@ router.post('/', async (req, res, next) => {
           price: productToAdd.price,
           productId,
           cartId: userCart.id,
+          name: productToAdd.name,
         });
         res.status(201).json(newCartItem);
       }
