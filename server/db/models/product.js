@@ -29,3 +29,13 @@ const Product = db.define('product', {
 });
 
 module.exports = Product;
+
+/**
+ * classMethods
+ */
+Product.findByProductId = async function (productId) {
+  const product = await Product.findOne({
+    where: { productId },
+  });
+  return product;
+};

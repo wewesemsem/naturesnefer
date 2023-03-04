@@ -41,10 +41,14 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.delete('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy();
-  res.redirect('/');
+router.delete('/logout', (req, res, next) => {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    req.session.destroy();
+    res.redirect('/');
+  });
 });
 
 router.get('/me', (req, res) => {

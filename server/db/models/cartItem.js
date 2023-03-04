@@ -16,6 +16,10 @@ const CartItem = db.define('cartItem', {
     type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
   },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = CartItem;
